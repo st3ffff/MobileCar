@@ -1,0 +1,43 @@
+﻿@* Your existing Razor code *@
+@model List<AddCarViewModel>  
+
+<h1>All Cars Available</h1>
+<hr/>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="get" class="d-flex" style="height: 50px" asp-action="List" asp-controller="Cars">
+            <input name="searchString" class="form-control me-1" type="search" placeholder="Търси по модел..." aria-label="Search">
+
+            <button class="btn btn-dark" type="submit">Търси</button>
+            <a asp-action="List" class="btn btn-link text-dark">Изчисти</a>
+
+        </form>
+
+    </div>
+</div>
+
+<div class="row" style="padding-top: 20px">
+
+        @foreach (var car in Model)
+        {
+            
+            <div class="card" style="width: 26rem;">
+               <img class="card-img-top" src="@car.ImageUrl" alt="Card image cap">
+                 <div class="card-body">
+                <h3 class="card-title">Brand:@car.Name</h3>
+                <h5 class="card-title">Price: @car.Price lv.</h5>
+                <h5 class="card-title">Milage: @car.Kilometers km.</h5>
+                 
+                <a class="btn btn-primary" asp-controller="Cars" asp-action="Edit" asp-route-id="@car.Id">Edit</a>
+                </div>
+                </div>
+@*                <td>@car.Id</td>  
+                <td>@car.Name</td>
+                <td>@car.Price</td>
+                <td>@car.Kilometers</td>
+                <td><img src="@car.ImageUrl" alt="Car Image" style="max-width: 100px; max-height: 100px;" /></td>
+                <td>*@     
+
+        }
+</div>
